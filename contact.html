@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | FastLane Courier Services</title>
+  <meta name="description" content="Contact FastLane Courier Services LLC in St. Louis. Call, email, or send us a message — we're available 24/7 for emergency dispatch." />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header id="header">
+  <nav class="container">
+    <a href="index.html" class="nav-logo">
+      <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+      <div class="logo-text">Fast<span>Lane</span></div>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current">Contact</span>
+      </div>
+      <h1>Get in Touch</h1>
+      <p>Have a question, need a quote, or want to set up a recurring account? We're here to help — reach out any time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact Section ── -->
+<section>
+  <div class="container">
+    <div class="contact-grid">
+
+      <!-- Left: Info -->
+      <div>
+        <div class="contact-info-list">
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fa-solid fa-phone"></i></div>
+            <div>
+              <div class="ci-label">Phone</div>
+              <div class="ci-value">(314) 555-0192</div>
+              <div class="ci-sub">Available Mon–Fri 6am–8pm, Sat 7am–5pm</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fa-solid fa-envelope"></i></div>
+            <div>
+              <div class="ci-label">Email</div>
+              <div class="ci-value">info@fastlanecourier.com</div>
+              <div class="ci-sub">We respond within 1 business hour</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fa-solid fa-location-dot"></i></div>
+            <div>
+              <div class="ci-label">Office Address</div>
+              <div class="ci-value">4200 Laclede Ave, Suite 100</div>
+              <div class="ci-sub">St. Louis, MO 63108</div>
+            </div>
+          </div>
+          <div class="ci-item">
+            <div class="ci-icon"><i class="fa-solid fa-circle-exclamation"></i></div>
+            <div>
+              <div class="ci-label">Emergency Dispatch</div>
+              <div class="ci-value">(314) 555-0911</div>
+              <div class="ci-sub">24/7 availability for urgent deliveries</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hours-box" style="margin-top: 40px;">
+          <div class="hours-box-title">Business Hours</div>
+          <div class="hours-row"><span>Monday – Friday</span><span>6:00 AM – 8:00 PM</span></div>
+          <div class="hours-row"><span>Saturday</span><span>7:00 AM – 5:00 PM</span></div>
+          <div class="hours-row"><span>Sunday</span><span>By Appointment</span></div>
+          <div class="hours-row"><span>Emergency / STAT</span><span>24 / 7</span></div>
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="form-card">
+        <div class="form-card-title">Send Us a Message</div>
+        <div class="form-card-subtitle">We'll get back to you within one business hour during normal hours.</div>
+
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" placeholder="Jane" required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" placeholder="Smith" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="jane@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" placeholder="(314) 555-0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="company">Company / Organization</label>
+            <input type="text" id="company" placeholder="Your business name" />
+          </div>
+          <div class="form-group">
+            <label for="subject">Subject</label>
+            <select id="subject">
+              <option value="">Select a topic…</option>
+              <option>Request a Quote</option>
+              <option>Set Up a Business Account</option>
+              <option>Medical Courier Services</option>
+              <option>Legal Courier Services</option>
+              <option>Manufacturing / Automotive</option>
+              <option>Billing Question</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" placeholder="Tell us how we can help…" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">
+            <i class="fa-solid fa-paper-plane"></i> Send Message
+          </button>
+        </form>
+        <div id="formSuccess" style="display:none; text-align:center; padding: 32px 0;">
+          <div style="font-size: 2.5rem; color: var(--blue); margin-bottom: 16px;"><i class="fa-solid fa-circle-check"></i></div>
+          <h3 style="margin-bottom: 8px;">Message Sent!</h3>
+          <p>Thanks for reaching out. We'll be in touch shortly.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <div class="logo-text">Fast<span>Lane</span></div>
+        </a>
+        <p>St. Louis's most reliable same-day courier service. Specialized deliveries for medical, legal, manufacturing, and automotive industries.</p>
+        <div class="footer-social">
+          <a href="#" class="social-btn">FB</a>
+          <a href="#" class="social-btn">LI</a>
+          <a href="#" class="social-btn">TW</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#medical">Medical Courier</a></li>
+          <li><a href="services.html#legal">Legal Courier</a></li>
+          <li><a href="services.html#manufacturing">Manufacturing</a></li>
+          <li><a href="services.html#automotive">Automotive</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#team">Our Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="quote.html">Get a Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span>4200 Laclede Ave, Suite 100<br>St. Louis, MO 63108</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-phone"></i></span><span>(314) 555-0192</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-envelope"></i></span><span>info@fastlanecourier.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 FastLane Courier Services LLC. All rights reserved.</p>
+      <p>Serving the Greater St. Louis Metro Area</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
