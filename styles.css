@@ -257,6 +257,23 @@ nav {
   font-size: 0.8125rem; font-weight: 500;
 }
 
+/* ── Follow Us Strip ─────────────────────── */
+.follow-strip { background: var(--off-white); border-bottom: 1px solid var(--gray-200); padding: 16px 0; }
+.follow-inner { display: flex; align-items: center; justify-content: center; gap: 16px; }
+.follow-label {
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--navy-light);
+}
+.follow-icons { display: flex; gap: 10px; }
+.social-icon-btn {
+  width: 38px; height: 38px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--white); font-size: 1rem;
+  transition: var(--transition);
+}
+.social-icon-btn:hover { background: var(--red); }
+
 /* ── Features Strip ──────────────────────── */
 .features-strip { background: var(--navy-light); padding: 0; }
 .features-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
