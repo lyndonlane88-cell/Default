@@ -478,24 +478,6 @@ footer { background: var(--navy); border-top: 1px solid rgba(255,255,255,0.07); 
 .value-icon  { font-size: 2rem; margin-bottom: 16px; }
 .value-card h3 { font-size: 1rem; margin-bottom: 8px; }
 .value-card p  { font-size: 0.875rem; }
-.team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
-.team-card {
-  background: var(--white); border: 1px solid var(--gray-200);
-  border-radius: var(--radius-lg); padding: 32px 24px; text-align: center;
-  transition: var(--transition);
-}
-.team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
-.team-avatar {
-  width: 80px; height: 80px;
-  background: var(--navy); border-radius: 50%;
-  margin: 0 auto 16px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 2rem;
-}
-.team-card h3  { font-size: 1rem; margin-bottom: 4px; }
-.team-role     { color: var(--navy-light); font-size: 0.875rem; font-weight: 600; margin-bottom: 8px; }
-.team-bio      { font-size: 0.875rem; }
-
 /* ── Contact Page ────────────────────────── */
 .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; }
 .contact-info-list { display: flex; flex-direction: column; gap: 28px; }
