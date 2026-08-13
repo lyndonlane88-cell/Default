@@ -3,438 +3,384 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Daily Financial Journal</title>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: system-ui, -apple-system, sans-serif;
-      background: #f5f7fa;
-      color: #2d3748;
-      min-height: 100vh;
-      padding: 24px 16px;
-    }
-
-    .container {
-      max-width: 720px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      font-size: 1.6rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-
-    .date-nav {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .date-nav button {
-      background: none;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      padding: 4px 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      color: #4a5568;
-    }
-
-    .date-nav button:hover { background: #edf2f7; }
-
-    #current-date {
-      font-size: 1rem;
-      font-weight: 600;
-      color: #4a5568;
-    }
-
-    /* Summary cards */
-    .summary {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 24px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 10px;
-      padding: 16px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
-    }
-
-    .card label {
-      display: block;
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      color: #718096;
-      margin-bottom: 6px;
-    }
-
-    .card .amount {
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-
-    .income-card .amount  { color: #38a169; }
-    .expense-card .amount { color: #e53e3e; }
-    .balance-card .amount { color: #3182ce; }
-
-    /* Entry form */
-    .form-section {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
-      margin-bottom: 24px;
-    }
-
-    .form-section h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 2fr auto;
-      gap: 8px;
-      align-items: end;
-    }
-
-    .field label {
-      display: block;
-      font-size: 0.78rem;
-      color: #718096;
-      margin-bottom: 4px;
-    }
-
-    .field input, .field select {
-      width: 100%;
-      padding: 8px 10px;
-      border: 1px solid #cbd5e0;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      background: #fff;
-      color: #2d3748;
-    }
-
-    .field input:focus, .field select:focus {
-      outline: none;
-      border-color: #4299e1;
-      box-shadow: 0 0 0 3px rgba(66,153,225,.15);
-    }
-
-    .btn-add {
-      padding: 8px 18px;
-      background: #4299e1;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      height: 36px;
-    }
-
-    .btn-add:hover { background: #3182ce; }
-
-    /* Entries list */
-    .entries-section {
-      background: #fff;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 1px 3px rgba(0,0,0,.08);
-    }
-
-    .entries-section h2 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 14px;
-    }
-
-    .entries-list {
-      list-style: none;
-    }
-
-    .entry-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 0;
-      border-bottom: 1px solid #edf2f7;
-      gap: 12px;
-    }
-
-    .entry-item:last-child { border-bottom: none; }
-
-    .entry-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex: 1;
-      min-width: 0;
-    }
-
-    .type-badge {
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      padding: 2px 7px;
-      border-radius: 4px;
-      white-space: nowrap;
-    }
-
-    .badge-income  { background: #c6f6d5; color: #276749; }
-    .badge-expense { background: #fed7d7; color: #9b2c2c; }
-
-    .entry-desc {
-      font-size: 0.88rem;
-      color: #4a5568;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .entry-category {
-      font-size: 0.75rem;
-      color: #a0aec0;
-      white-space: nowrap;
-    }
-
-    .entry-amount {
-      font-size: 0.95rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .amount-income  { color: #38a169; }
-    .amount-expense { color: #e53e3e; }
-
-    .btn-delete {
-      background: none;
-      border: none;
-      color: #cbd5e0;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0 4px;
-      line-height: 1;
-    }
-
-    .btn-delete:hover { color: #e53e3e; }
-
-    .empty-state {
-      text-align: center;
-      padding: 32px 0;
-      color: #a0aec0;
-      font-size: 0.9rem;
-    }
-
-    @media (max-width: 560px) {
-      .form-row { grid-template-columns: 1fr 1fr; }
-      .field.desc-field { grid-column: 1 / -1; }
-      .btn-add { grid-column: 1 / -1; width: 100%; height: auto; padding: 10px; }
-    }
-  </style>
+  <title>FastLane Courier Services | Same-Day Delivery in St. Louis</title>
+  <meta name="description" content="FastLane Courier Services LLC — specialized same-day courier for medical, legal, manufacturing, and automotive industries within 50 miles of St. Louis." />
+  <link rel="canonical" href="https://fastlanecourierservices.com/" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FastLane Courier Services" />
+  <meta property="og:title" content="FastLane Courier Services | Same-Day Delivery in St. Louis" />
+  <meta property="og:description" content="FastLane Courier Services LLC — specialized same-day courier for medical, legal, manufacturing, and automotive industries within 50 miles of St. Louis." />
+  <meta property="og:url" content="https://fastlanecourierservices.com/" />
+  <meta property="og:image" content="https://fastlanecourierservices.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="FastLane Courier Services | Same-Day Delivery in St. Louis" />
+  <meta name="twitter:description" content="FastLane Courier Services LLC — specialized same-day courier for medical, legal, manufacturing, and automotive industries within 50 miles of St. Louis." />
+  <meta name="twitter:image" content="https://fastlanecourierservices.com/assets/og-image.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-<div class="container">
-  <h1>Daily Financial Journal</h1>
 
-  <div class="date-nav">
-    <button id="prev-day">&#8592;</button>
-    <span id="current-date"></span>
-    <button id="next-day">&#8594;</button>
-  </div>
+<!-- ── Header ── -->
+<header id="header">
+  <nav class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo-full-white.png" alt="FastLane Courier Services" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="drivers.html">Drivers</a></li>
+      <li><a href="track.html">Track</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
 
-  <div class="summary">
-    <div class="card income-card">
-      <label>Income</label>
-      <div class="amount" id="total-income">$0.00</div>
-    </div>
-    <div class="card expense-card">
-      <label>Expenses</label>
-      <div class="amount" id="total-expenses">$0.00</div>
-    </div>
-    <div class="card balance-card">
-      <label>Balance</label>
-      <div class="amount" id="balance">$0.00</div>
-    </div>
-  </div>
-
-  <div class="form-section">
-    <h2>Add Entry</h2>
-    <div class="form-row">
-      <div class="field">
-        <label for="entry-type">Type</label>
-        <select id="entry-type">
-          <option value="income">Income</option>
-          <option value="expense">Expense</option>
-        </select>
+<!-- ── Hero ── -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <i class="fa-solid fa-location-dot"></i>
+          Serving Greater St. Louis &amp; 50-Mile Radius
+        </div>
+        <h1>Delivering St. Louis at the <span>Speed of Business</span></h1>
+        <p class="hero-sub">
+          FastLane Courier Services LLC specializes in time-critical deliveries for the medical, legal, manufacturing, and automotive industries — handled with precision, every time.
+        </p>
+        <div class="hero-actions">
+          <a href="quote.html" class="btn btn-primary btn-lg">
+            <i class="fa-solid fa-paper-plane"></i> Get a Free Quote
+          </a>
+          <a href="services.html" class="btn btn-secondary btn-lg">
+            <i class="fa-solid fa-arrow-right"></i> Our Services
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <div class="stat-num">500<span>+</span></div>
+            <div class="stat-lbl">Daily Deliveries</div>
+          </div>
+          <div>
+            <div class="stat-num">50<span>mi</span></div>
+            <div class="stat-lbl">Coverage Radius</div>
+          </div>
+          <div>
+            <div class="stat-num">99<span>%</span></div>
+            <div class="stat-lbl">On-Time Rate</div>
+          </div>
+        </div>
       </div>
-      <div class="field">
-        <label for="entry-amount">Amount ($)</label>
-        <input type="number" id="entry-amount" placeholder="0.00" min="0" step="0.01" />
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-card-title">Coverage Area</div>
+          <div class="coverage-ring">
+            <div>
+              <div class="ring">
+                <div class="ring-dot"></div>
+              </div>
+              <div class="ring-label">St. Louis Metro &amp; 50-Mile Radius</div>
+            </div>
+          </div>
+          <div class="hero-tags">
+            <span class="tag"><i class="fa-solid fa-heart-pulse"></i> Medical</span>
+            <span class="tag"><i class="fa-solid fa-scale-balanced"></i> Legal</span>
+            <span class="tag"><i class="fa-solid fa-industry"></i> Manufacturing</span>
+            <span class="tag"><i class="fa-solid fa-car"></i> Automotive</span>
+          </div>
+        </div>
       </div>
-      <div class="field desc-field">
-        <label for="entry-desc">Description</label>
-        <input type="text" id="entry-desc" placeholder="e.g. Salary, Groceries…" maxlength="80" />
-      </div>
-      <button class="btn-add" id="btn-add">+ Add</button>
     </div>
   </div>
+</section>
 
-  <div class="entries-section">
-    <h2>Today's Entries</h2>
-    <ul class="entries-list" id="entries-list"></ul>
+<!-- ── Follow Us ── -->
+<section class="follow-strip">
+  <div class="container">
+    <div class="follow-inner">
+      <span class="follow-label">Follow Us</span>
+      <div class="follow-icons">
+        <a href="https://www.linkedin.com/in/fastlane-courier-services-0b558b3ab/" class="social-icon-btn" target="_blank" rel="noopener noreferrer" aria-label="FastLane Courier Services on LinkedIn">
+          <i class="fa-brands fa-linkedin-in"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Features Strip ── -->
+<div class="features-strip">
+  <div class="container">
+    <div class="features-grid">
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+        <div>
+          <div class="feature-title">Same-Day Delivery</div>
+          <div class="feature-desc">Pick up and deliver within hours, not days</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div>
+          <div class="feature-title">Fully Insured</div>
+          <div class="feature-desc">Every delivery protected, every time</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+        <div>
+          <div class="feature-title">24/7 Emergency</div>
+          <div class="feature-desc">Around-the-clock availability for urgent runs</div>
+        </div>
+      </div>
+      <div class="feature-item">
+        <div class="feature-icon"><i class="fa-solid fa-route"></i></div>
+        <div>
+          <div class="feature-title">Real-Time Tracking</div>
+          <div class="feature-desc">Know exactly where your delivery is at all times</div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<script>
-  const STORAGE_KEY = 'fin_journal_v1';
+<!-- ── Services Overview ── -->
+<section>
+  <div class="container">
+    <div class="section-header">
+      <span class="section-label">What We Deliver</span>
+      <h2 class="section-title">Specialized Courier Services</h2>
+      <p class="section-subtitle">We serve the industries that can't afford to wait. Each delivery is handled by trained, professional couriers who understand your field.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+        <h3>Medical Courier</h3>
+        <p>Specimens, medications, lab work, medical records, and equipment — delivered with the care and urgency patient care demands.</p>
+        <a href="services.html#medical" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h3>Legal Courier</h3>
+        <p>Court filings, depositions, contracts, and confidential documents delivered on time to law firms, courthouses, and clients.</p>
+        <a href="services.html#legal" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
+        <h3>Manufacturing</h3>
+        <p>Critical parts, components, and materials to keep your production line running without costly downtime or delays.</p>
+        <a href="services.html#manufacturing" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><i class="fa-solid fa-car"></i></div>
+        <h3>Automotive</h3>
+        <p>Parts, keys, titles, and documents for dealerships, repair shops, and auto suppliers who need fast, reliable service.</p>
+        <a href="services.html#automotive" class="service-link">Learn more <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
 
-  // ── State ────────────────────────────────────────────────────
-  let viewDate = todayKey();
+<!-- ── Stats Band ── -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div>
+        <div class="stat-num">500<span>+</span></div>
+        <div class="stat-lbl">Deliveries Per Day</div>
+      </div>
+      <div>
+        <div class="stat-num">50<span>mi</span></div>
+        <div class="stat-lbl">Service Radius</div>
+      </div>
+      <div>
+        <div class="stat-num">99<span>%</span></div>
+        <div class="stat-lbl">On-Time Delivery</div>
+      </div>
+      <div>
+        <div class="stat-num">24<span>/7</span></div>
+        <div class="stat-lbl">Emergency Availability</div>
+      </div>
+    </div>
+  </div>
+</div>
 
-  function todayKey() {
-    return new Date().toISOString().slice(0, 10); // YYYY-MM-DD
-  }
-
-  function formatDisplay(key) {
-    // key = YYYY-MM-DD
-    const [y, m, d] = key.split('-').map(Number);
-    const dt = new Date(y, m - 1, d);
-    return dt.toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-  }
-
-  function shiftDate(key, days) {
-    const [y, m, d] = key.split('-').map(Number);
-    const dt = new Date(y, m - 1, d);
-    dt.setDate(dt.getDate() + days);
-    return dt.toISOString().slice(0, 10);
-  }
-
-  // ── Storage ──────────────────────────────────────────────────
-  function loadAll() {
-    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; }
-    catch { return {}; }
-  }
-
-  function saveAll(data) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-  }
-
-  function getEntries(dateKey) {
-    return loadAll()[dateKey] || [];
-  }
-
-  function saveEntry(dateKey, entry) {
-    const all = loadAll();
-    if (!all[dateKey]) all[dateKey] = [];
-    all[dateKey].push(entry);
-    saveAll(all);
-  }
-
-  function deleteEntry(dateKey, id) {
-    const all = loadAll();
-    if (!all[dateKey]) return;
-    all[dateKey] = all[dateKey].filter(e => e.id !== id);
-    saveAll(all);
-  }
-
-  // ── Rendering ────────────────────────────────────────────────
-  function fmt(n) {
-    return '$' + Math.abs(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-  }
-
-  function render() {
-    document.getElementById('current-date').textContent = formatDisplay(viewDate);
-
-    const entries = getEntries(viewDate);
-    const income   = entries.filter(e => e.type === 'income' ).reduce((s, e) => s + e.amount, 0);
-    const expenses = entries.filter(e => e.type === 'expense').reduce((s, e) => s + e.amount, 0);
-    const balance  = income - expenses;
-
-    document.getElementById('total-income').textContent   = fmt(income);
-    document.getElementById('total-expenses').textContent = fmt(expenses);
-    const balEl = document.getElementById('balance');
-    balEl.textContent = (balance < 0 ? '-' : '') + fmt(balance);
-    balEl.style.color = balance < 0 ? '#e53e3e' : '#3182ce';
-
-    const list = document.getElementById('entries-list');
-    if (entries.length === 0) {
-      list.innerHTML = '<li class="empty-state">No entries yet for this day.</li>';
-      return;
-    }
-
-    list.innerHTML = entries.map(e => `
-      <li class="entry-item">
-        <div class="entry-left">
-          <span class="type-badge badge-${e.type}">${e.type}</span>
-          <span class="entry-desc">${escape(e.desc) || '—'}</span>
+<!-- ── Why FastLane ── -->
+<section>
+  <div class="container">
+    <div class="why-grid">
+      <div>
+        <span class="section-label">Why Choose Us</span>
+        <h2 class="section-title">Built for Industries That Can't Wait</h2>
+        <p style="margin-bottom: 40px;">FastLane isn't a general delivery service — we're a specialized courier built around the unique demands of St. Louis's professional community.</p>
+        <div class="why-features">
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-user-tie"></i></div>
+            <div>
+              <h3>Professional, Trained Drivers</h3>
+              <p>Every FastLane driver is background-checked, HIPAA-aware, and trained in chain-of-custody procedures.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-bolt"></i></div>
+            <div>
+              <h3>Rush &amp; Scheduled Options</h3>
+              <p>From on-demand emergency pickups to recurring scheduled routes, we flex around your business needs.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-handshake"></i></div>
+            <div>
+              <h3>Dedicated Account Management</h3>
+              <p>Regular business clients get a dedicated point of contact — no phone trees, no runaround.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+            <div>
+              <h3>Deep Local Knowledge</h3>
+              <p>We know St. Louis. From downtown to the suburbs, our drivers know the fastest, most reliable routes.</p>
+            </div>
+          </div>
         </div>
-        <span class="entry-amount amount-${e.type}">${e.type === 'expense' ? '-' : '+'}${fmt(e.amount)}</span>
-        <button class="btn-delete" data-id="${e.id}" title="Delete">&#x2715;</button>
-      </li>
-    `).join('');
+      </div>
+      <div>
+        <div class="why-card">
+          <div class="why-big-num">99<span>%</span></div>
+          <div class="why-big-lbl">On-Time Delivery Rate</div>
+          <ul class="check-list">
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> Background-checked, professional drivers</li>
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> HIPAA-compliant medical deliveries</li>
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> Full chain-of-custody documentation</li>
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> Real-time delivery confirmation</li>
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> Fully insured every delivery</li>
+            <li><span class="check"><i class="fa-solid fa-check"></i></span> 24/7 emergency dispatch available</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    list.querySelectorAll('.btn-delete').forEach(btn => {
-      btn.addEventListener('click', () => {
-        deleteEntry(viewDate, btn.dataset.id);
-        render();
-      });
-    });
-  }
+<!-- ── Industries ── -->
+<section class="industries-section">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="section-label">Industries Served</span>
+      <h2 class="section-title">Who We Work With</h2>
+      <p class="section-subtitle">We deliver for the businesses that keep St. Louis running — from hospitals to law firms to factory floors.</p>
+    </div>
+    <div class="industries-grid">
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-hospital"></i></div>
+        <h3>Hospitals &amp; Clinics</h3>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-flask"></i></div>
+        <h3>Labs &amp; Pharmacies</h3>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-gavel"></i></div>
+        <h3>Law Firms</h3>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-landmark"></i></div>
+        <h3>Courts &amp; Government</h3>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-gear"></i></div>
+        <h3>Manufacturing Plants</h3>
+      </div>
+      <div class="industry-card">
+        <div class="industry-icon"><i class="fa-solid fa-car-side"></i></div>
+        <h3>Auto Dealerships</h3>
+      </div>
+    </div>
+  </div>
+</section>
 
-  function escape(str) {
-    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-  }
+<!-- ── CTA Banner ── -->
+<section class="cta-banner">
+  <div class="container">
+    <h2>Ready to Get Started?</h2>
+    <p>Get a free quote in minutes. Same-day service available across the greater St. Louis metro area.</p>
+    <div class="cta-actions">
+      <a href="quote.html" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-paper-plane"></i> Request a Quote
+      </a>
+      <a href="contact.html" class="btn btn-secondary btn-lg">
+        <i class="fa-solid fa-phone"></i> Call Us Now
+      </a>
+    </div>
+  </div>
+</section>
 
-  // ── Event listeners ──────────────────────────────────────────
-  document.getElementById('prev-day').addEventListener('click', () => {
-    viewDate = shiftDate(viewDate, -1);
-    render();
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+      <img src="assets/logo-full-white.png" alt="FastLane Courier Services" />
+    </a>
+        <p>St. Louis's most reliable same-day courier service. Specialized deliveries for medical, legal, manufacturing, and automotive industries.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/fastlane-courier-services-0b558b3ab/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="FastLane Courier Services on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#medical">Medical Courier</a></li>
+          <li><a href="services.html#legal">Legal Courier</a></li>
+          <li><a href="services.html#manufacturing">Manufacturing</a></li>
+          <li><a href="services.html#automotive">Automotive</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="drivers.html">Driver Opportunities</a></li>
+          <li><a href="track.html">Track a Delivery</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="quote.html">Get a Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span>231 S Bemiston Ave, Ste 850<br>Clayton, MO 63105</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-phone"></i></span><span>(314) 744-9236</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-envelope"></i></span><span>lyndonlane@fastlanecourierservices.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 FastLane Courier Services LLC. All rights reserved. &nbsp;<a href="privacy.html" style="color: rgba(255,255,255,0.3); text-decoration: underline;">Privacy Policy</a></p>
+      <p>Serving the Greater St. Louis Metro Area</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
   });
-
-  document.getElementById('next-day').addEventListener('click', () => {
-    viewDate = shiftDate(viewDate, 1);
-    render();
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
   });
-
-  document.getElementById('btn-add').addEventListener('click', () => {
-    const type   = document.getElementById('entry-type').value;
-    const amount = parseFloat(document.getElementById('entry-amount').value);
-    const desc   = document.getElementById('entry-desc').value.trim();
-
-    if (!amount || amount <= 0) {
-      document.getElementById('entry-amount').focus();
-      return;
-    }
-
-    saveEntry(viewDate, {
-      id: Date.now().toString(36) + Math.random().toString(36).slice(2),
-      type,
-      amount,
-      desc,
-    });
-
-    document.getElementById('entry-amount').value = '';
-    document.getElementById('entry-desc').value   = '';
-    render();
-  });
-
-  // Allow pressing Enter in description field to submit
-  document.getElementById('entry-desc').addEventListener('keydown', e => {
-    if (e.key === 'Enter') document.getElementById('btn-add').click();
-  });
-
-  // ── Init ─────────────────────────────────────────────────────
-  render();
 </script>
 </body>
 </html>

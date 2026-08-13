@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track a Delivery | FastLane Courier Services</title>
+  <meta name="description" content="Check the status of a FastLane Courier Services delivery, or reach dispatch directly for a live update." />
+  <link rel="canonical" href="https://fastlanecourierservices.com/track.html" />
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" href="assets/favicon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="FastLane Courier Services" />
+  <meta property="og:title" content="Track a Delivery | FastLane Courier Services" />
+  <meta property="og:description" content="Check the status of a FastLane Courier Services delivery, or reach dispatch directly for a live update." />
+  <meta property="og:url" content="https://fastlanecourierservices.com/track.html" />
+  <meta property="og:image" content="https://fastlanecourierservices.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Track a Delivery | FastLane Courier Services" />
+  <meta name="twitter:description" content="Check the status of a FastLane Courier Services delivery, or reach dispatch directly for a live update." />
+  <meta name="twitter:image" content="https://fastlanecourierservices.com/assets/og-image.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header id="header">
+  <nav class="container">
+    <a href="index.html" class="nav-logo">
+      <img src="assets/logo-full-white.png" alt="FastLane Courier Services" />
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="pricing.html">Pricing</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="drivers.html">Drivers</a></li>
+      <li><a href="track.html" class="active">Track</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="quote.html" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<!-- ── Page Hero ── -->
+<section class="page-hero">
+  <div class="container">
+    <div class="page-hero-inner">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span class="bc-sep">/</span>
+        <span class="bc-current">Track a Delivery</span>
+      </div>
+      <h1>Track Your Delivery</h1>
+      <p>Enter your reference number below. For live, real-time status, our dispatch team is always the fastest way to get an answer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── Track Form ── -->
+<section style="background: var(--off-white);">
+  <div class="container">
+    <div class="quote-wrapper">
+      <div class="quote-card" id="trackCard">
+        <div class="quote-card-head">
+          <div class="quote-card-head-icon"><i class="fa-solid fa-route"></i></div>
+          <div>
+            <h3>Check Delivery Status</h3>
+            <p>FastLane Courier Services LLC &bull; St. Louis, MO</p>
+          </div>
+        </div>
+        <div class="quote-card-body">
+          <form id="trackForm" onsubmit="handleTrackSubmit(event)">
+            <div class="field-section-title">Reference Number</div>
+            <div class="form-group">
+              <label for="refNumber">Order / Reference Number</label>
+              <input type="text" id="refNumber" placeholder="e.g. FL-10234" required />
+            </div>
+            <div class="form-group">
+              <label for="refPhoneEmail">Phone or Email on File</label>
+              <input type="text" id="refPhoneEmail" placeholder="Used to confirm your delivery" required />
+            </div>
+            <button type="submit" class="btn btn-primary form-submit">
+              <i class="fa-solid fa-magnifying-glass"></i> Check Status
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Result State -->
+      <div id="trackResult" style="display:none; text-align:center; padding: 64px 24px;">
+        <div style="font-size: 3rem; color: var(--navy-light); margin-bottom: 24px;"><i class="fa-solid fa-headset"></i></div>
+        <h2 style="margin-bottom: 12px;">We Don't Have Automated Tracking Yet</h2>
+        <p style="max-width: 480px; margin: 0 auto 32px;">FastLane doesn't currently offer self-service online tracking. For a live status update on reference <strong id="refEcho"></strong>, our dispatch team can tell you exactly where your delivery is right now.</p>
+        <div style="display:flex; gap:16px; justify-content:center; flex-wrap:wrap;">
+          <a href="tel:+13147449236" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Call Dispatch</a>
+          <a href="contact.html" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Email Us</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── Trust Strip ── -->
+<section style="padding: 64px 0;">
+  <div class="container">
+    <div class="section-header centered">
+      <span class="section-label">Why FastLane</span>
+      <h2 class="section-title">A Real Person, Every Time</h2>
+      <p class="section-subtitle">No automated status page tells you as much as a two-minute call to the people actually running your route.</p>
+    </div>
+    <div class="features-grid" style="background: var(--off-white); border-radius: var(--radius-lg); overflow: hidden;">
+      <div class="feature-item" style="background: var(--navy);">
+        <div class="feature-icon"><i class="fa-solid fa-phone"></i></div>
+        <div>
+          <div class="feature-title">Direct Dispatch Line</div>
+          <div class="feature-desc">Talk to the team coordinating your driver</div>
+        </div>
+      </div>
+      <div class="feature-item" style="background: var(--navy);">
+        <div class="feature-icon"><i class="fa-solid fa-clock"></i></div>
+        <div>
+          <div class="feature-title">24/7 Emergency</div>
+          <div class="feature-desc">Around-the-clock availability for urgent runs</div>
+        </div>
+      </div>
+      <div class="feature-item" style="background: var(--navy);">
+        <div class="feature-icon"><i class="fa-solid fa-circle-check"></i></div>
+        <div>
+          <div class="feature-title">Confirmed Delivery</div>
+          <div class="feature-desc">You receive delivery confirmation with timestamp</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer ── -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo">
+      <img src="assets/logo-full-white.png" alt="FastLane Courier Services" />
+    </a>
+        <p>St. Louis's most reliable same-day courier service. Specialized deliveries for medical, legal, manufacturing, and automotive industries.</p>
+        <div class="footer-social">
+          <a href="https://www.linkedin.com/in/fastlane-courier-services-0b558b3ab/" class="social-btn" target="_blank" rel="noopener noreferrer" aria-label="FastLane Courier Services on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html#medical">Medical Courier</a></li>
+          <li><a href="services.html#legal">Legal Courier</a></li>
+          <li><a href="services.html#manufacturing">Manufacturing</a></li>
+          <li><a href="services.html#automotive">Automotive</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="drivers.html">Driver Opportunities</a></li>
+          <li><a href="track.html">Track a Delivery</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="quote.html">Get a Quote</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-location-dot"></i></span><span>231 S Bemiston Ave, Ste 850<br>Clayton, MO 63105</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-phone"></i></span><span>(314) 744-9236</span></div>
+        <div class="footer-contact-row"><span class="icon"><i class="fa-solid fa-envelope"></i></span><span>lyndonlane@fastlanecourierservices.com</span></div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 FastLane Courier Services LLC. All rights reserved. &nbsp;<a href="privacy.html" style="color: rgba(255,255,255,0.3); text-decoration: underline;">Privacy Policy</a></p>
+      <p>Serving the Greater St. Louis Metro Area</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  window.addEventListener('scroll', () => {
+    document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+  });
+  document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  function handleTrackSubmit(e) {
+    e.preventDefault();
+    const ref = document.getElementById('refNumber').value.trim();
+    document.getElementById('refEcho').textContent = ref || 'your delivery';
+    document.getElementById('trackCard').style.display = 'none';
+    document.getElementById('trackResult').style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
