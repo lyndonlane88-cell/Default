@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>sniickrz</title>
+  <meta name="description" content="sniickrz — gaming clips, highlights, and socials all in one place." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="sniickrz" />
+  <meta property="og:title" content="sniickrz" />
+  <meta property="og:description" content="Gaming clips, highlights, and socials — all in one place." />
+  <meta name="theme-color" content="#0a0a0f" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<div class="bg-glow" aria-hidden="true"></div>
+
+<!-- ── Header ── -->
+<header id="header">
+  <nav class="container nav">
+    <a href="#home" class="nav-logo">sniick<span>rz</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#clips">Clips</a></li>
+      <li><a href="#socials">Socials</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+    <a href="https://discord.gg/WZVdwDRKu" target="_blank" rel="noopener" class="nav-cta">
+      <i class="fa-brands fa-discord"></i> <span>Join Discord</span>
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="home">
+    <div class="container hero-inner">
+      <div class="hero-badge"><i class="fa-solid fa-signal"></i> Live clips &amp; highlights</div>
+      <h1 class="hero-title">SNIICK<span>RZ</span></h1>
+      <p class="hero-sub">
+        Clutches, chaos, and content — this is where every clip worth watching ends up.
+        Follow along and catch the highlights as they drop.
+      </p>
+      <div class="hero-actions">
+        <a href="#clips" class="btn btn-primary"><i class="fa-solid fa-play"></i> Watch Clips</a>
+        <a href="https://discord.gg/WZVdwDRKu" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="fa-brands fa-discord"></i> Join the Discord
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Clips ── -->
+  <section class="section" id="clips">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Recent Uploads</span>
+        <h2>Latest Clips</h2>
+        <p class="section-sub">Fresh highlights, straight from the YouTube channel.</p>
+      </div>
+
+      <div id="clipsGrid" class="clips-grid"><!-- injected by script.js --></div>
+
+      <div class="clips-more">
+        <a href="https://youtube.com/@sniickrzzz" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="fa-brands fa-youtube"></i> See All Clips on YouTube
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Socials ── -->
+  <section class="section section-alt" id="socials">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow">Find Me</span>
+        <h2>Socials</h2>
+        <p class="section-sub">Every platform, one tap away.</p>
+      </div>
+
+      <div class="socials-grid">
+        <a class="social-card social-youtube" href="https://youtube.com/@sniickrzzz" target="_blank" rel="noopener">
+          <i class="fa-brands fa-youtube"></i>
+          <span class="social-name">YouTube</span>
+          <span class="social-handle">@sniickrzzz</span>
+        </a>
+        <a class="social-card social-instagram" href="https://www.instagram.com/sniickrz.gaming.clips" target="_blank" rel="noopener">
+          <i class="fa-brands fa-instagram"></i>
+          <span class="social-name">Instagram</span>
+          <span class="social-handle">@sniickrz.gaming.clips</span>
+        </a>
+        <a class="social-card social-tiktok" href="https://www.tiktok.com/@sniickrz.gaming.c" target="_blank" rel="noopener">
+          <i class="fa-brands fa-tiktok"></i>
+          <span class="social-name">TikTok</span>
+          <span class="social-handle">@sniickrz.gaming.c</span>
+        </a>
+        <a class="social-card social-discord" href="https://discord.gg/WZVdwDRKu" target="_blank" rel="noopener">
+          <i class="fa-brands fa-discord"></i>
+          <span class="social-name">Discord</span>
+          <span class="social-handle">Join the server</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ── -->
+  <section class="section" id="about">
+    <div class="container about-inner">
+      <div class="section-head">
+        <span class="eyebrow">Who's This</span>
+        <h2>About sniickrz</h2>
+      </div>
+      <p class="about-text">
+        sniickrz is a gaming content creator posting clips, highlights, and shorts across
+        YouTube, Instagram, and TikTok. New uploads regularly — clutch plays, funny moments,
+        and everything in between. Come for the clips, stay for the chaos, and jump into the
+        Discord to hang out between uploads.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── Footer ── -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-logo">sniick<span>rz</span></div>
+    <div class="footer-socials">
+      <a href="https://youtube.com/@sniickrzzz" target="_blank" rel="noopener" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a href="https://www.instagram.com/sniickrz.gaming.clips" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://www.tiktok.com/@sniickrz.gaming.c" target="_blank" rel="noopener" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a href="https://discord.gg/WZVdwDRKu" target="_blank" rel="noopener" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+    </div>
+    <p class="footer-copy">&copy; <span id="year"></span> sniickrz. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
