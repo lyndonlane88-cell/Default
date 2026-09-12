@@ -5,6 +5,7 @@
 //   Self-hosted:  { src: "assets/clips/my-clip.mp4", title: "How did this even happen" }
 //                 (src is a video file placed in assets/clips/)
 const CLIPS = [
+  { src: "assets/clips/hibana-ace.mp4", title: "How a CHAMP Plays Hibana — ACE" },
   { src: "assets/clips/hibana-2k-funny-tk.mp4", title: "Hibana 2K — Funny TK" },
 ];
 
