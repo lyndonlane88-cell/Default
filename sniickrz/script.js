@@ -1,10 +1,11 @@
 // ── Clips list ──────────────────────────────────────────────
-// Add your recent clips here. `id` is the YouTube video ID
-// (the part after "v=" or after "youtu.be/" in the video URL).
-// Example: "https://www.youtube.com/watch?v=dQw4w9WgXcQ" -> id: "dQw4w9WgXcQ"
+// Two kinds of entries:
+//   YouTube:      { id: "dQw4w9WgXcQ", title: "Insane clutch 1v5" }
+//                 (id is the part after "v=" or after "youtu.be/" in the video URL)
+//   Self-hosted:  { src: "assets/clips/my-clip.mp4", title: "How did this even happen" }
+//                 (src is a video file placed in assets/clips/)
 const CLIPS = [
-  // { id: "dQw4w9WgXcQ", title: "Insane clutch 1v5" },
-  // { id: "dQw4w9WgXcQ", title: "How did this even happen" },
+  { src: "assets/clips/hibana-2k-funny-tk.mp4", title: "Hibana 2K — Funny TK" },
 ];
 
 function renderClips() {
@@ -23,13 +24,17 @@ function renderClips() {
   grid.innerHTML = CLIPS.map(clip => `
     <div class="clip-card">
       <div class="clip-frame">
+        ${clip.src ? `
+        <video controls preload="metadata" playsinline title="${clip.title}">
+          <source src="${clip.src}">
+        </video>` : `
         <iframe
           src="https://www.youtube.com/embed/${clip.id}"
           title="${clip.title}"
           loading="lazy"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen>
-        </iframe>
+        </iframe>`}
       </div>
       <div class="clip-title">${clip.title}</div>
     </div>
